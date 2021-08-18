@@ -1,0 +1,277 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8.3"
+    },
+    "colab": {
+      "name": "Unit4_FinalProject.ipynb",
+      "provenance": []
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "mZ7UjY8nsRz-"
+      },
+      "source": [
+        "# Unit 4 Final Projects: Calculating evolutionary distance\n",
+        "\n",
+        "In this notebook you will compare the sequence of a particular gene from 3 different species to find out which two are most closely related. \n",
+        "\n",
+        "You will need to do the following:\n",
+        "1. Open and read in your files\n",
+        "2. Decide which sequences to compare (DNA, RNA, or protein), (you may have to look at all of them)\n",
+        "3. Write code that prints out the percent similarity of each pair of sequences\n",
+        "\n",
+        "Note: Percent similarity can be taken by the following formula: `similarites * 100 / length of the shortest sequence`\n",
+        " "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "40hpAfl4sWg8",
+        "outputId": "7181bb13-ad12-484c-97e6-b93b7a4829f5"
+      },
+      "source": [
+        "from google.colab import drive\n",
+        "drive.mount('/content/drive')"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Mounted at /content/drive\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "yUYvOrwQsR0C"
+      },
+      "source": [
+        "turtle = open(\"/content/drive/MyDrive/Colab Notebooks/2a_CYTB_DNA.txt\").read()\n",
+        "chicken = open(\"/content/drive/MyDrive/Colab Notebooks/2b_CYTB_DNA.txt\").read()\n",
+        "alligator = open(\"/content/drive/MyDrive/Colab Notebooks/2c_CYTB_DNA.txt\").read()"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "collapsed": true,
+        "id": "JFTOt87XsR0C"
+      },
+      "source": [
+        "numSimilarities_TC = 0\n",
+        "\n",
+        "#for loop to iterate through both lists\n",
+        "for c, i in enumerate(turtle):\n",
+        "\n",
+        "# != checks for things that are not differences\n",
+        "\n",
+        "#compare each sequence using an if statement\n",
+        "  if chicken[c] == i: #we found a difference\n",
+        "    numSimilarities_TC += 1"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "collapsed": true,
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "a2WKa-l_sR0D",
+        "outputId": "5844caa0-ac1d-4abe-f9a5-caeda3b37a39"
+      },
+      "source": [
+        "print(numSimilarities_TC) #chicken and turtle sim."
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "848\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "EFkyI5v43AqF"
+      },
+      "source": [
+        "numSimilarities_TA = 0\n",
+        "\n",
+        "#for loop to iterate through both lists\n",
+        "for c, i in enumerate(turtle):\n",
+        "\n",
+        "# != checks for things that are not differences\n",
+        "\n",
+        "#compare each sequence using an if statement\n",
+        "  if alligator[c] == i: #we found a difference\n",
+        "    numSimilarities_TA += 1"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jFhPmtSW3HwB",
+        "outputId": "0abbb18f-36d0-421c-bd2e-5a40b79e3a3b"
+      },
+      "source": [
+        "print(numSimilarities_TA) #turtle and alligator sim."
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "792\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "0XqeF_OZ3Me_"
+      },
+      "source": [
+        "numSimilarities_CA = 0\n",
+        "\n",
+        "#for loop to iterate through both lists\n",
+        "for c, i in enumerate(chicken):\n",
+        "\n",
+        "# != checks for things that are not differences\n",
+        "\n",
+        "#compare each sequence using an if statement\n",
+        "  if alligator[c] == i: #we found a difference\n",
+        "    numSimilarities_CA += 1"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jKxxS_QO3Q6S",
+        "outputId": "1e221c20-eada-4f98-b456-8aac3a875194"
+      },
+      "source": [
+        "print(numSimilarities_CA) #chicken and alligator sim."
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "772\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "cQqWCJQhsR0D"
+      },
+      "source": [
+        "## Bonus Challenge\n",
+        "\n",
+        "Visualize your results! Choose a graph type that you think will communicate your conclusions effectively and create it using matplotlib:"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2dIPnHe83QSm"
+      },
+      "source": [
+        "import matplotlib.pyplot as plt"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "PBGL6EdysR0E"
+      },
+      "source": [
+        "#a = turtle \n",
+        "#b = chicken \n",
+        "#c = alligator\n",
+        "\n",
+        "plt.bar"
+      ],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "e7gORcjfsR0F"
+      },
+      "source": [
+        "## Bonus Challenge 2\n",
+        "If you finish your project and want to try a challenge, come up with a hypothesis about which of the following species are most closely related to humans (carp, chicken, chimp, dog, eel, elephant, frog, gorilla, macaque monkey, mouse, orangutan, pig). Write out a ranked list with the species you think is most related to humans at the top.\n",
+        "\n",
+        "Then calculate the percent difference between the hemoglobin amino acid sequences of humans and each species to find out how close you came to the right ranking!"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "collapsed": true,
+        "id": "r7YtlQpgsR0F"
+      },
+      "source": [
+        ""
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
